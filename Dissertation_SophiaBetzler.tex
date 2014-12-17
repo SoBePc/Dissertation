@@ -1,0 +1,278 @@
+%GENERAL SETTINGS - PREAMBEL
+\documentclass[english,numbers=noenddot,bibtotoc,11pt]{scrreprt}
+
+%Onesided / Twosided
+%include oneside/(twoside=true+open=right+cleardoublepage=empty) in options of documentclass, additionally the settings in the fancyhdr package have to be changed, as given in that part of the preambel + remove cleardoubleemptypage after list of abbreviations
+
+
+	%Change to pdftex
+\usepackage[pdftex]{graphicx} 
+\usepackage{epstopdf}
+%\usepackage{graphicx}
+
+\usepackage[pdftex]{hyperref}
+\pdfoutput=1
+\usepackage{ae}
+%\usepackage{hyperref}
+
+	%Tabellen im Anhang
+\usepackage{here}
+\usepackage{tabularx}
+\newcolumntype{U}{>{\centering\arraybackslash}X}
+
+
+	%Change Zeilenabstand
+\usepackage[doublespacing]{setspace}
+
+
+		%optimal margin
+\usepackage[a4paper, left=3.5cm, right=2.5cm, top=3.0cm, bottom=2.0cm]{geometry} 						
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0em}
+\raggedbottom
+		%List of figures/table of content in German
+%\usepackage[ngerman]{babel}
+
+
+
+		%Usage of Miller indices
+\usepackage{miller}
+
+		%Showing of ä,ö,ü and determination of style of lettering
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\newcommand{\changefont}[3]{\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+\changefont{ptm}{m}{n}
+\usepackage{units}
+
+		%Bibliography
+%\usepackage{authordate1-4}
+%\usepackage[]{advancedmaterials}
+\usepackage[square,comma,sort&compress,super]{natbib}
+%\usepackage[babel,german=quotes]{csquotes} 
+
+
+		%Insertation of images as .eps-files
+%\usepackage{graphicx} 
+\usepackage{wrapfig}											%Text surrounded image
+
+		
+		%Formatting of captions
+\usepackage[format=hang,bf,labelsep=period,sf,footnotesize]{caption}[2008/04/01]		%Indention of captions
+\usepackage{remreset}										%Numbering of images 
+%\makeatletter
+\@removefromreset{figure}{chapter}
+\@removefromreset{table}{chapter}
+\renewcommand \thefigure{\@arabic\c@figure}
+\renewcommand \thetable{\@arabic\c@table}
+\renewcommand{\captionfont}{\small \sffamily} 
+%\addto\captionsngerman{\renewcommand\figurename{Figure}}
+%\addto\captionsngerman{\renewcommand\tablename{Table}}
+
+		%Links inside the document
+\usepackage{color}
+\definecolor{myred}{rgb}{0.8,0.0,0.0}
+\definecolor{mygreen}{rgb}{0.0,0.8,0.0}
+\definecolor{myblue}{rgb}{0.0,0.0,0.8}
+
+		%Nummerierung im Anhang
+\usepackage[toc,page,titletoc]{appendix}
+ \renewcommand\appendix{\par 
+    \setcounter{section}{0}% 
+    \setcounter{subsection}{0}% 
+    \setcounter{table}{0}
+    %\makeatother
+    %\renewcommand \thefigure{\@arabic\c@figure}
+		%\renewcommand \thetable{\@arabic\c@table}
+    \renewcommand\thesection{\Alph{section}}% 
+    \renewcommand\thefigure{\Alph{section}.\arabic{figure}}
+    \renewcommand\thetable{\Alph{section}.\arabic{table}}}
+
+%\usepackage{hyperref}
+\hypersetup{
+bookmarks=true, 												%Showing of book marks
+unicode=false,													%Non-latin character in Acrobat's book marks
+pdftoolbar=true,												%show Acrobat's toolbar
+pdfmenubar=true,												%show Acrobat's menu
+pdffitwindow=true,											%page fit to window when opened
+pdftitle={Mytitle},
+pdfauthor={Author},
+pdfsubject={Subject},
+pdfcreator={Creator},
+pdfproducer={Producer},
+pdfkeywords={keywords},
+pdfnewwindow=true,											%links in new window
+colorlinks=true,												%false=boxed links, true=colored links (Des muss ich deaktivieren!!!!)
+linkcolor=black,												%color of internal links (myred)
+citecolor=black,											%color of links to bibliography (mygreen)
+filecolor=black,											%color of file links (magenta)
+urlcolor=black													%color of external links (blue)
+}
+
+
+		%Layout of header
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\pagestyle{fancyplain}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\chaptermark}[1]{
+  \markboth{
+     \MakeUppercase{\chaptername\ \thechapter\ #1}
+  }{}
+}
+\fancyhead[LE,RO]{\thepage}  														%twosided print
+\fancyhead[LO,RE]{\fancyplain{}{\nouppercase\rightmark}} %twosided print
+%\lhead[]{\fancyplain{}{\nouppercase\rightmark}} 				%onesided print		
+%\rhead[]{\fancyplain{}{\thepage}}											%onesided print
+\cfoot{}
+\fancypagestyle{plain}
+{\fancyhf{}\fancyfoot{}\renewcommand{\headrulewidth}{0.4pt}} 
+%\addtokomafont{disposition}{\rmfamily}
+\renewcommand{\chapterpagestyle}{fancy}
+
+		%Chemical formulas
+\usepackage[version=3]{mhchem}
+
+		%Rotate table
+\usepackage{rotating}
+\usepackage{caption}
+		%Zeilenabstand verändern
+\renewcommand{\arraystretch}{1.5}
+
+
+		%Table of content
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+
+		%Breaks
+%\parindent 5pt
+%\parskip 0pt
+
+		%Formen
+\usepackage{pifont}
+
+		%List of abbreviations
+\usepackage[intoc,german]{nomencl}
+\let\abbrev\nomenclature
+\renewcommand{\nomname}{List of abbreviations}
+\setlength{\nomlabelwidth}{1.0\hsize}
+\renewcommand{\nomlabel}[1]{#1 \dotfill}
+\setlength{\nomitemsep}{-\parsep}
+\makenomenclature 
+
+\newcommand{\Abkuerzung}{
+\printnomenclature
+\newpage
+    } 
+
+\makeatletter
+	\renewcommand{\thenomenclature}{%
+		\@ifundefined{chapter}{\addsec*}{\addchap}{\nomname}%
+		\nompreamble
+		\list{}{%
+			\labelwidth\nom@tempdim
+			\leftmargin\labelwidth
+			\advance\leftmargin\labelsep
+			\itemsep\nomitemsep
+			\let\makelabel\nomlabel
+		}
+	}
+	\renewcommand{\nomname}{List of abbreviations}
+	\let\abbrev\nomenclature
+	\setlength{\nomlabelwidth}{.4\hsize}
+	\setlength{\nomitemsep}{-\parsep}
+	\makenomenclature
+\makeatother    
+
+
+		%Definition of word breaks
+\hyphenation{an-iso-tropic}
+\hyphenation{an-iso-tropy}
+
+		%Maths
+\usepackage{amsmath,amssymb}
+
+		%Format of title page
+\usepackage{calc}
+\newlength{\BreiteDesBildes}
+\newlength{\HoeheDesBildes}
+\setlength{\BreiteDesBildes}{4cm}			%Angabe der Breit und Hoehe des Bildes
+\setlength{\HoeheDesBildes}{23.7cm}
+
+\def\blurb{%
+\vspace{5em} 
+ \LARGE{Masterarbeit} \\
+\vspace{1em}
+  \Large{aus dem Fachgebiet Physikalische Chemie} \\[1em]
+}
+\def\clap#1{\hbox to 0pt{\hss #1\hss}}%
+\def\line#1{%
+  \hbox to \hsize{%
+    \vbox{\centering #1}}}%
+\def\haut#1#2#3{%
+  \hbox to \hsize{%
+    \rlap{\vtop{\raggedright #1}}%
+    \hss
+    \clap{\vtop{\centering #2}}%
+    \hss
+    \llap{\vtop{\raggedleft #3}}}}%
+\def\bas#1#2#3{%
+  \hbox to \hsize{%
+    \rlap{\vbox{\raggedright #1}}%
+    \hss
+    \clap{\vbox{\centering #2}}%
+    \hss
+    \llap{\vbox{\raggedleft #3}}}}%
+
+
+%BEGIN of document
+\begin{document}
+
+\newpage
+
+		%Table of contents
+\pdfbookmark[0]{Table of contents}{toc}
+\tableofcontents
+
+		%List of figures
+\listoffigures
+
+		%List of tables 
+\listoftables
+
+		%List of abbreviations
+%\Abkuerzung
+%
+%\printnomenclature
+%\cleardoubleemptypage
+		%Introduction
+		
+
+
+
+
+
+
+\renewcommand{\thepage}{\arabic{page}}
+\setcounter{page}{1}
+
+\chapter{Introduction}
+
+\chapter{Materials and Methods}
+\include{./MaterialMethods/MaterialsMethods}
+
+\chapter{Results and discussion}
+\include{./Paper/Paper_Cubes/Paper_Cubes}
+
+\chapter{Conclusion}
+
+\chapter{Summary and outlook}
+
+\bibliography{Bibliography}
+\bibliographystyle{ACF-style}
+
+
+
+%ENDE DES DOKUMENTS
+\end{document}
+
